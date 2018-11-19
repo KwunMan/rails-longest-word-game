@@ -1,0 +1,23 @@
+<h1>Result</h1>
+<!-- <p>Find me in app/views/games/score.html.erb</p> -->
+<!-- The word can't be built out of the original grid
+The word is valid according to the grid, but is not a valid English word
+The word is valid according to the grid and is an English word -->
+<% count = 0 %>
+<% @letters.each { |letter| count += 1 if @word.downcase.include?(letter.downcase) } %>
+<% if @valid["found"] && @word.length == count %>
+  <p>Congratulation! <b><%= @word %></b> is a valid English word!</p>
+  <!-- <% @score = count %> -->
+<% elsif @valid["found"] %>
+  <p>Sorry, but test can't be built out of
+    <ul class="list-inline">
+      <% @letters.each { |letter| %>
+      <li><%= letter %></li>
+      <% } %>
+    </ul>
+  </p>
+<% else %>
+  <p>Sorry, but <b><%= @word %></b> does not seem to be a valid English word... </p>
+<% end %>
+<!-- <h3>Your score: <%= session[:score] %> </h3> -->
+<%= link_to "Click here to go back", new_path %>
